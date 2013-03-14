@@ -69,8 +69,7 @@ def goahead(page, crawled, tocrawl):
 	if page not in crawled:
 		union(tocrawl, get_all_links(get_page(page)))
 		crawled.add(page)
-		print crawled, '\n\n', len(crawled)
-
+		#print crawled, '\n\n', len(crawled)
 '''
 Type: Function
 Input: A root URL to start crawling with, number of URL(s) to crawl
@@ -92,6 +91,12 @@ def crawl_web(seed,limit):
 
 	return crawled, tocrawl
 
+def writetofile(done):
+	file_handle = open('links.txt','wt')
+	for url in done:
+		file_handle.write(url+'\n')
+	file_handle.close()
+
 '''
 Program execution starts here by getting 2 inputs
 1. A URL to start crawling
@@ -106,4 +111,8 @@ limit = raw_input('#> ')
 Type: Function call
 Parameters: Root URL and Limit of crawling URL(s)
 '''
-crawl_web(root_url, limit)
+print "Crawling...."
+done, todo = crawl_web(root_url, limit)
+print "Done crawling\nWriting links to file."
+writetofile(done)
+print "Finished writing to file"
