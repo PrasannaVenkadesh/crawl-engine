@@ -69,7 +69,7 @@ def goahead(page, crawled, tocrawl):
 	if page not in crawled:
 		union(tocrawl, get_all_links(get_page(page)))
 		crawled.add(page)
-		#print crawled, '\n\n', len(crawled)
+		print crawled
 '''
 Type: Function
 Input: A root URL to start crawling with, number of URL(s) to crawl
